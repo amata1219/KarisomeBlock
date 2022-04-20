@@ -1,5 +1,5 @@
 name: KarisomeBlocks
-main: amata1219.karisome.blocks.KarisomeBlocks
+main: amata1219.karisome.block.KarisomeBlocks
 version: 1.0.0
 api-version: 1.18
 author: '@amata1219'
