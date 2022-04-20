@@ -3,3 +3,8 @@ main: amata1219.karisome.blocks.KarisomeBlocks
 version: 1.0.0
 api-version: 1.18
 author: '@amata1219'
+
+commands:
+  karisome:
+    permission: karisome.blocks.main
+    permission-message: 'You do not have the permission.'
