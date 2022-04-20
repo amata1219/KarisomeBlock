@@ -3,12 +3,12 @@
 Add a karisome(=temporary) block to Minecraft!  
 The karisome block will break in 3 seconds and return to you.  
 
-# How to get it
+## How to get it
 The karisome block can be gotten by executing the command /karisome.  
 To specify the number of blocks, specify a number from 1 to 64 as the argument.  
 For example, to get 64 blocks, type /karisome 64.  
 
-# Specification
+## Specification
 The permission of the /karisome is karisome.block.main.  
 The karisome block cannot be moved by piston.  
 If the player logs out before the block is returned to the player's possession, the itemized karisome block will be dropped at the player's final logout point.  
