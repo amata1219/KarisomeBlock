@@ -15,13 +15,16 @@ public class KarisomeBlockPlacing {
     public static void placeKarisomeBlock(Player placer, ItemStack karisomeBlockItemStackInPlacerHand, Location location, long durationInTicks) {
         ItemStack oneOfKarisomeBlockItemStackInPlacerHand = KarisomeBlockItem.createKarisomeBlockItemStack(1, durationInTicks);
 
-        placer.playSound(location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
+        placer.playSound(location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 1.65f);
 
         boolean isSurvivalMode = placer.getGameMode() == GameMode.SURVIVAL;
         if (isSurvivalMode) decrementAmountOf(karisomeBlockItemStackInPlacerHand);
 
         Location particleSpawnLocation = location.clone().add(0.5, 0.5, 0.5);
-        BukkitTask particleSpawner = runTaskTimerAsynchronously(() -> spawnParticle(Particle.SNOWFLAKE, particleSpawnLocation, 10), 0L, 10L);
+        BukkitTask particleSpawner = runTaskTimerAsynchronously(() -> {
+            spawnParticle(Particle.ENCHANTMENT_TABLE, particleSpawnLocation, 10);
+            spawnParticle(Particle.CRIT_MAGIC, particleSpawnLocation, 4);
+        }, 0L, 10L);
 
         Map<Location, Runnable> scheduledSubroutinesOnKarisomeBlockDestruction = KarisomeBlock.plugin().scheduledSubroutinesOnKarisomeBlockDestruction;
 

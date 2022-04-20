@@ -48,9 +48,16 @@ public class KarisomeBlock extends JavaPlugin {
         return keyForKarisomeBlockDuration;
     }
 
-    public void tryRunSubroutineOnKarisomeBlockDestruction(Location locationMayHaveKarisomeBlock) {
-        if (scheduledSubroutinesOnKarisomeBlockDestruction.containsKey(locationMayHaveKarisomeBlock))
+    public boolean doesKarisomeBlockExistAt(Location location) {
+        return scheduledSubroutinesOnKarisomeBlockDestruction.containsKey(location);
+    }
+
+    public boolean tryRunSubroutineOnKarisomeBlockDestruction(Location locationMayHaveKarisomeBlock) {
+        if (doesKarisomeBlockExistAt(locationMayHaveKarisomeBlock)) {
             scheduledSubroutinesOnKarisomeBlockDestruction.remove(locationMayHaveKarisomeBlock).run();
+            return true;
+        }
+        return false;
     }
 
 }

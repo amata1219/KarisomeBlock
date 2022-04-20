@@ -8,10 +8,15 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class KarisomeBlockListener implements Listener {
+
+    private final KarisomeBlock plugin = KarisomeBlock.plugin();
+
     @EventHandler(ignoreCancelled = true)
     public void onPlace(BlockPlaceEvent event) {
         ItemStack item = event.getItemInHand();
@@ -25,7 +30,27 @@ public class KarisomeBlockListener implements Listener {
         Block block = event.getBlock();
         if (block.getType() != Material.TINTED_GLASS) return;
 
-        event.setCancelled(true);
-        KarisomeBlock.plugin().tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation());
+        if (plugin.tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation())) event.setCancelled(true);
     }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onPistonExtend(BlockPistonExtendEvent event) {
+        for (Block block : event.getBlocks()) {
+            if (plugin.doesKarisomeBlockExistAt(block.getLocation())) {
+                event.setCancelled(true);
+                break;
+            }
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onPistonExtend(BlockPistonRetractEvent event) {
+        for (Block block : event.getBlocks()) {
+            if (plugin.doesKarisomeBlockExistAt(block.getLocation())) {
+                event.setCancelled(true);
+                break;
+            }
+        }
+    }
+
 }

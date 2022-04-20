@@ -28,6 +28,11 @@ public class KarisomeBlocksCommand implements CommandExecutor {
             }
         }
 
+        if (!(1 <= amount && amount <= 64)) {
+            sender.sendMessage("%sThe amount must be between 1 and 64.".formatted(RED));
+            return true;
+        }
+
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
 
         player.getInventory().addItem(KarisomeBlockItem.createKarisomeBlockItemStack(amount, 20 * 3));

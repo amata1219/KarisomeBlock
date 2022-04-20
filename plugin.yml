@@ -1,4 +1,4 @@
-name: KarisomeBlocks
+name: KarisomeBlock
 main: amata1219.karisome.block.KarisomeBlock
 version: 1.0.0
 api-version: 1.18
