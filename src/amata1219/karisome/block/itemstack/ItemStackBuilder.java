@@ -1,6 +1,6 @@
-package amata1219.karisome.blocks.itemstack;
+package amata1219.karisome.block.itemstack;
 
-import amata1219.karisome.blocks.extension.ItemStackExtension;
+import amata1219.karisome.block.extension.ItemStackExtension;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -52,17 +52,17 @@ public class ItemStackBuilder {
     }
 
     public ItemStack build() {
-        ItemStack item = new ItemStack(type, amount);
+        ItemStack itemStack = new ItemStack(type, amount);
 
-        ItemMeta meta = ItemStackExtension.itemMeta(item);
+        ItemMeta meta = ItemStackExtension.itemMetaOf(itemStack);
         meta.setDisplayName(displayName);
         meta.setLore(lore);
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
         persistentDataContainer.accept(container);
 
-        item.setItemMeta(meta);
-        return item;
+        itemStack.setItemMeta(meta);
+        return itemStack;
     }
 
 }

@@ -1,4 +1,4 @@
-package amata1219.karisome.blocks.extension;
+package amata1219.karisome.block.extension;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;

@@ -1,8 +1,8 @@
-package amata1219.karisome.blocks.command;
+package amata1219.karisome.block.command;
 
 import static org.bukkit.ChatColor.*;
 
-import amata1219.karisome.blocks.KarisomeBlockItem;
+import amata1219.karisome.block.KarisomeBlockItem;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,9 +30,9 @@ public class KarisomeBlocksCommand implements CommandExecutor {
 
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
 
-        player.getInventory().addItem(KarisomeBlockItem.createKarisomeBlocks(amount, 20 * 3));
+        player.getInventory().addItem(KarisomeBlockItem.createKarisomeBlockItemStack(amount, 20 * 3));
 
-        player.sendMessage("%sYou have been given &d karisome blocks!".formatted(AQUA, amount));
+        player.sendMessage("%sYou have been given %d karisome blocks!".formatted(AQUA, amount));
         return true;
     }
 }
