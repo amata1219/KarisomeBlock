@@ -12,26 +12,27 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.Map;
 
 public class KarisomeBlockPlacing {
-    public static void placeKarisomeBlock(Player placer, ItemStack karisomeBlockItemStackInPlacerHand, Location location, long durationInTicks) {
+
+    public static void placeKarisomeBlock(Player placer, ItemStack karisomeBlockItemStackInPlacerHand, Location location) {
+        long durationInTicks = KarisomeBlockItem.durationInTicks(karisomeBlockItemStackInPlacerHand);
         ItemStack oneOfKarisomeBlockItemStackInPlacerHand = KarisomeBlockItem.createKarisomeBlockItemStack(1, durationInTicks);
 
-        placer.playSound(location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, 1.65f);
+        playSound(location, Sound.BLOCK_ENDER_CHEST_OPEN, 1.0f, 0.0f);
 
         boolean isSurvivalMode = placer.getGameMode() == GameMode.SURVIVAL;
         if (isSurvivalMode) decrementAmountOf(karisomeBlockItemStackInPlacerHand);
 
         Location particleSpawnLocation = location.clone().add(0.5, 0.5, 0.5);
         BukkitTask particleSpawner = runTaskTimerAsynchronously(() -> {
-            spawnParticle(Particle.ENCHANTMENT_TABLE, particleSpawnLocation, 10);
+            spawnParticle(Particle.ENCHANTMENT_TABLE, particleSpawnLocation, 6);
             spawnParticle(Particle.CRIT_MAGIC, particleSpawnLocation, 4);
         }, 0L, 10L);
 
         Map<Location, Runnable> scheduledSubroutinesOnKarisomeBlockDestruction = KarisomeBlock.plugin().scheduledSubroutinesOnKarisomeBlockDestruction;
-
         Runnable subroutineOnKarisomeBlockDestruction = () -> {
             location.getBlock().setType(Material.AIR);
-            playSound(location, Sound.BLOCK_GLASS_BREAK, 1.0f, 1.0f);
-            spawnParticle(Particle.BLOCK_CRACK, particleSpawnLocation, 10, Material.TINTED_GLASS.createBlockData());
+
+            playSound(location, Sound.BLOCK_ENDER_CHEST_OPEN, 1.0f, 2.0f);
 
             particleSpawner.cancel();
 

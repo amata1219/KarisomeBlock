@@ -1,6 +1,7 @@
 package amata1219.karisome.block;
 
 import amata1219.karisome.block.command.KarisomeBlocksCommand;
+import amata1219.karisome.block.listener.KarisomeBlockBridgeListener;
 import amata1219.karisome.block.listener.KarisomeBlockListener;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -25,7 +26,10 @@ public class KarisomeBlock extends JavaPlugin {
 
         getCommand("karisome").setExecutor(new KarisomeBlocksCommand());
 
-        registerListeners(new KarisomeBlockListener());
+        registerListeners(
+                new KarisomeBlockListener(),
+                new KarisomeBlockBridgeListener()
+        );
     }
 
     private void registerListeners(Listener... listeners) {

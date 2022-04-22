@@ -13,7 +13,8 @@ public class ItemStackExtension {
 
     public static void decrementAmountOf(ItemStack itemStack) {
         int amount = itemStack.getAmount();
-        if (amount > 1) itemStack.setAmount(amount - 1);
-        else itemStack.setType(Material.AIR);
+        //if (amount > 1) itemStack.setAmount(amount - 1);
+        //else itemStack.setType(Material.AIR);
+        itemStack.setAmount(amount - 1);
     }
 }

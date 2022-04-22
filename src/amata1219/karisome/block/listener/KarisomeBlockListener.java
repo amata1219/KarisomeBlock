@@ -19,18 +19,15 @@ public class KarisomeBlockListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPlace(BlockPlaceEvent event) {
-        ItemStack item = event.getItemInHand();
-        if (KarisomeBlockItem.isKarisomeBlockItemStack(item)) KarisomeBlockPlacing.placeKarisomeBlock(
-                event.getPlayer(), item, event.getBlock().getLocation(), KarisomeBlockItem.durationInTicks(item)
-        );
+        ItemStack itemInMainHand = event.getItemInHand();
+        if (KarisomeBlockItem.isKarisomeBlockItemStack(itemInMainHand)) KarisomeBlockPlacing.placeKarisomeBlock(event.getPlayer(), itemInMainHand, event.getBlock().getLocation());
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
-        if (block.getType() != Material.TINTED_GLASS) return;
-
-        if (plugin.tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation())) event.setCancelled(true);
+        System.out.println(block.getType() == KarisomeBlockItem.KARISOME_BLOCK_TYPE);
+        if (block.getType() == KarisomeBlockItem.KARISOME_BLOCK_TYPE && plugin.tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation())) event.setCancelled(true);
     }
 
     @EventHandler(ignoreCancelled = true)

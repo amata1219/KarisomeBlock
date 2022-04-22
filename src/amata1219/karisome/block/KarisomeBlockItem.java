@@ -11,9 +11,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class KarisomeBlockItem {
 
+    public static final Material KARISOME_BLOCK_TYPE = Material.GLASS;
+
     public static ItemStack createKarisomeBlockItemStack(int amount, long durationInTicks) {
         return ItemStackBuilder.builder()
-                .type(Material.TINTED_GLASS)
+                .type(KARISOME_BLOCK_TYPE)
                 .amount(amount)
                 .displayName(ChatColor.WHITE + "Karisome Block")
                 .lore(ChatColor.GRAY + "Duration: " + durationInTicks + " ticks")
@@ -25,7 +27,7 @@ public class KarisomeBlockItem {
     }
 
     public static boolean isKarisomeBlockItemStack(ItemStack itemStack) {
-        return hasPersistentData(itemStack, keyForKarisomeBlockDuration(), PersistentDataType.LONG);
+        return itemStack != null && itemStack.getType() == KARISOME_BLOCK_TYPE && hasPersistentData(itemStack, keyForKarisomeBlockDuration(), PersistentDataType.LONG);
     }
 
     private static <T, Z> boolean hasPersistentData(ItemStack itemStack, NamespacedKey persistentDataKey, PersistentDataType<T, Z> persistentDataType) {
