@@ -33,9 +33,25 @@ public class KarisomeBlocksCommand implements CommandExecutor {
             return true;
         }
 
+        long durationInTicks;
+        if (args.length <= 1) durationInTicks = 20 * 3;
+        else {
+            try {
+                durationInTicks = Long.parseLong(args[1]);
+            } catch(NumberFormatException ex) {
+                player.sendMessage("%sThe duration must be numeric.".formatted(RED));
+                return true;
+            }
+        }
+
+        if (!(1 <= durationInTicks && durationInTicks <= 20 * 60 * 30)) {
+            sender.sendMessage("%sThe duration must be between 1 and 36000.".formatted(RED));
+            return true;
+        }
+
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
 
-        player.getInventory().addItem(KarisomeBlockItem.createKarisomeBlockItemStack(amount, 20 * 3));
+        player.getInventory().addItem(KarisomeBlockItem.createKarisomeBlockItemStack(amount, durationInTicks));
 
         player.sendMessage("%sYou have been given %d karisome blocks!".formatted(AQUA, amount));
         return true;
