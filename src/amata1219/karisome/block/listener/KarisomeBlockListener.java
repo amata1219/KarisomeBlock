@@ -3,7 +3,6 @@ package amata1219.karisome.block.listener;
 import amata1219.karisome.block.KarisomeBlockItem;
 import amata1219.karisome.block.KarisomeBlockPlacing;
 import amata1219.karisome.block.KarisomeBlock;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,8 +25,7 @@ public class KarisomeBlockListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
-        System.out.println(block.getType() == KarisomeBlockItem.KARISOME_BLOCK_TYPE);
-        if (block.getType() == KarisomeBlockItem.KARISOME_BLOCK_TYPE && plugin.tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation())) event.setCancelled(true);
+        if (block.getType() == KarisomeBlockItem.GLASS_TYPE && plugin.tryRunSubroutineOnKarisomeBlockDestruction(block.getLocation())) event.setCancelled(true);
     }
 
     @EventHandler(ignoreCancelled = true)

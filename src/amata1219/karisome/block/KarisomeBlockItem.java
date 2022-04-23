@@ -6,16 +6,18 @@ import amata1219.karisome.block.itemstack.ItemStackBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
 public class KarisomeBlockItem {
 
-    public static final Material KARISOME_BLOCK_TYPE = Material.GLASS;
+    public static final Material GLASS_TYPE = Material.GLASS;
+    public static final BlockData GLASS_BLOCK_DATA = GLASS_TYPE.createBlockData();
 
     public static ItemStack createKarisomeBlockItemStack(int amount, long durationInTicks) {
         return ItemStackBuilder.builder()
-                .type(KARISOME_BLOCK_TYPE)
+                .type(GLASS_TYPE)
                 .amount(amount)
                 .displayName(ChatColor.WHITE + "Karisome Block")
                 .lore(ChatColor.GRAY + "Duration: " + durationInTicks + " ticks")
@@ -27,7 +29,7 @@ public class KarisomeBlockItem {
     }
 
     public static boolean isKarisomeBlockItemStack(ItemStack itemStack) {
-        return itemStack != null && itemStack.getType() == KARISOME_BLOCK_TYPE && hasPersistentData(itemStack, keyForKarisomeBlockDuration(), PersistentDataType.LONG);
+        return itemStack != null && itemStack.getType() == GLASS_TYPE && hasPersistentData(itemStack, keyForKarisomeBlockDuration(), PersistentDataType.LONG);
     }
 
     private static <T, Z> boolean hasPersistentData(ItemStack itemStack, NamespacedKey persistentDataKey, PersistentDataType<T, Z> persistentDataType) {

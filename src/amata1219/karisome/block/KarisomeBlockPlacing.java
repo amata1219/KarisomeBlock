@@ -25,14 +25,18 @@ public class KarisomeBlockPlacing {
         Location particleSpawnLocation = location.clone().add(0.5, 0.5, 0.5);
         BukkitTask particleSpawner = runTaskTimerAsynchronously(() -> {
             spawnParticle(Particle.ENCHANTMENT_TABLE, particleSpawnLocation, 6);
-            spawnParticle(Particle.CRIT_MAGIC, particleSpawnLocation, 4);
+            spawnParticle(Particle.CRIT_MAGIC, particleSpawnLocation, 2);
+            spawnParticle(Particle.PORTAL, particleSpawnLocation, 1);
         }, 0L, 10L);
 
         Map<Location, Runnable> scheduledSubroutinesOnKarisomeBlockDestruction = KarisomeBlock.plugin().scheduledSubroutinesOnKarisomeBlockDestruction;
         Runnable subroutineOnKarisomeBlockDestruction = () -> {
             location.getBlock().setType(Material.AIR);
 
-            playSound(location, Sound.BLOCK_ENDER_CHEST_OPEN, 1.0f, 2.0f);
+            //playSound(location, Sound.BLOCK_ENDER_CHEST_OPEN, 1.0f, 2.0f);
+            playSound(location, Sound.BLOCK_GLASS_BREAK, 1.0f, 0.7f);
+
+            spawnParticle(Particle.BLOCK_CRACK, particleSpawnLocation, 50, KarisomeBlockItem.GLASS_BLOCK_DATA);
 
             particleSpawner.cancel();
 
