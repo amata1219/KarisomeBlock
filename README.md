@@ -13,7 +13,7 @@ The unit of duration is tick.
 The permission of the /karisome is karisome.block.main.
 
 ## Bridge mode  
-Holding a karisome block in the main hand and pressing the F key while sneaking, blocks are continuously placed in the line of sight.  
+Holding karisome blocks in the main hand and pressing the F key while sneaking, blocks are continuously placed in the line of sight.  
 At this time, blocks can be placed while guiding with the line of sight.  
 Up to 64 blocks can be placed at once.  
 It also highlights where the block will be placed next.  
