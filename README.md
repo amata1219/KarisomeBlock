@@ -8,7 +8,7 @@ There is also a bridge mode that allows the player to place blocks in succession
 To get a karisome block, use the /karisome (amount) (duration) command.  
 Simply type /karisome to get one karisome block that will break in 3 seconds.  
 If you want to specify the number of blocks, specify a number from 1 to 64 in the amount argument.  
-If you want to specify the time it takes for the block to break, specify a number from 1 to 36000 for the duration argument.  
+To specify how long it takes for the block to break, specify a number between 1 and 36000 in the duration argument.  
 The unit of duration is tick.  
 The permission of the /karisome is karisome.block.main.
 
